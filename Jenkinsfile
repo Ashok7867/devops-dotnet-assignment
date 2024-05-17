@@ -7,20 +7,21 @@ stages {
     url: 'https://github.com/Ashok7867/devops-dotnet-assignment.git'
   }
  }
-   stage('Code Quality Check via SonarQube') {
-   steps {
-       script {
-       def scannerHome = tool 'Sonar';
-           withSonarQubeEnv("Sonar") {
-           sh "${tool("Sonar")}/bin/sonar-scanner \
-           -Dsonar.projectKey=dotnet-calc \
-           -Dsonar.sources=. \
-           -Dsonar.css.node=. \
-           -Dsonar.host.url=http://devops.sonarqube.com \
-           -Dsonar.login=squ_7bd899d9588930a6836ff1a53b3f0aace1647c24"
-                   }
-               }
-           }
-       }
+   stage('Code Analysis') {
+            environment {
+                scannerHome = tool 'Sonar'
+            }
+            steps {
+                script {
+                    withSonarQubeEnv('Sonar') {
+                        sh "${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=dotnet-calc \
+                            -Dsonar.projectName=dotnet-calc \
+                            -Dsonar.projectVersion=1.0 \
+                            -Dsonar.sources=."
+                    }
+                }
+            }
+        }
     }
 }
