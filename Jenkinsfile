@@ -1,24 +1,26 @@
 pipeline {
-    agent any
-    tools {
-        maven 'Maven'
-    }
-
-    stages {
-        stage('Git Checkout') {
-            steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ashok7867/devops-dotnet-assignment.git']])
-                echo 'Git Checkout Completed'
-            }
-        }
-
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('Sonarserver') {
-                    bat '''mvn clean verify sonar:sonar -Dsonar.projectKey='dotnet-calc' -Dsonar.projectName='dotnet-calc' -Dsonar.host.url='http://devops.sonarqube.com' //port 9000 is default for sonar
-                    echo 'SonarQube Analysis Completed'
-                }
-            }
-        }
+agent any
+stages {
+ stage("Code Checkout from Github") {
+  steps {
+   git branch: 'main',
+    url: 'https://github.com/Ashok7867/devops-dotnet-assignment.git'
+  }
+ }
+   stage('Code Quality Check via SonarQube') {
+   steps {
+       script {
+       def scannerHome = tool 'sonarqube';
+           withSonarQubeEnv("sonarqube-container") {
+           sh "${tool("sonarqube")}/bin/sonar-scanner \
+           -Dsonar.projectKey=dotnet-calc \
+           -Dsonar.sources=. \
+           -Dsonar.css.node=. \
+           -Dsonar.host.url=http://devops.sonarqube.com \
+           -Dsonar.login=squ_7bd899d9588930a6836ff1a53b3f0aace1647c24"
+                   }
+               }
+           }
+       }
     }
 }
