@@ -4,7 +4,8 @@ stages {
  stage("Code Checkout from Github") {
   steps {
    git branch: 'main',
-    url: 'https://github.com/Ashok7867/devops-dotnet-assignment.git'
+    credentialsId: 'GitHub',
+    url: 'git@github.com:Ashok7867/devops-dotnet-assignment.git'
   }
  }
    stage('Code Analysis') {
