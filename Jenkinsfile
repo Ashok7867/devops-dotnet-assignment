@@ -10,9 +10,9 @@ stages {
    stage('Code Quality Check via SonarQube') {
    steps {
        script {
-       def scannerHome = tool 'sonarqube';
-           withSonarQubeEnv("sonarqube-container") {
-           sh "${tool("sonarqube")}/bin/sonar-scanner \
+       def scannerHome = tool 'Sonar';
+           withSonarQubeEnv("Sonar") {
+           sh "${tool("Sonar")}/bin/sonar-scanner \
            -Dsonar.projectKey=dotnet-calc \
            -Dsonar.sources=. \
            -Dsonar.css.node=. \
