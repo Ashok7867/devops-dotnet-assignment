@@ -1,6 +1,14 @@
 pipeline {
 agent any
+options { skipDefaultCheckout() }   
 stages {
+    stages {
+        stage('CleanWorkspace') {
+            steps {
+                cleanWs()
+            }
+        }
+    }
     stage("Code Checkout from Github") {
         steps {
             git branch: 'main',
@@ -38,7 +46,7 @@ stages {
     }
 post {
     always {
-        deleteDir() /* clean up our workspace */
+        cleanWs() /* clean up our workspace */
             }   
     }       
 }
