@@ -44,10 +44,10 @@ stages {
     }
 post { 
     success { 
-        archiveArtifacts artifacts: '**/*', fingerprint: true
+        archiveArtifacts artifacts: 'SampleCalculatorApp/bin/Release/**/*', fingerprint: true
         }
-    // always {
-        // cleanWs() /* clean up our workspace */
-        // }
+    failure {
+        cleanWs() /* clean up our workspace */
+        }
     }      
 }
