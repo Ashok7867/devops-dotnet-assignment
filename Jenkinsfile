@@ -47,9 +47,9 @@ post {
         dir('**/*') { archiveArtifacts artifacts: '**' }
         }
     }
-post {
-    always {
-        cleanWs() /* clean up our workspace */
-            }   
-    }       
+// post {
+    // always {
+        // cleanWs() /* clean up our workspace */
+            // }   
+    // }       
 }
