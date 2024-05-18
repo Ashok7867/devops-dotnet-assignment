@@ -44,7 +44,7 @@ stages {
     }
 post { 
     success { 
-        dir('SampleCalculatorApp/bin/Release/net6.0/') { archiveArtifacts artifacts: '**' }
+        dir('SampleCalculatorApp/bin/Release/net6.0/') { archiveArtifacts artifacts: '**', fingerprint: true }
         }
     always {
         cleanWs() /* clean up our workspace */
