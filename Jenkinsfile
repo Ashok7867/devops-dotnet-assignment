@@ -2,13 +2,11 @@ pipeline {
 agent any
 options { skipDefaultCheckout() }   
 stages {
-    stages {
-        stage('CleanWorkspace') {
+    stage('CleanWorkspace') {
             steps {
                 cleanWs()
             }
         }
-    }
     stage("Code Checkout from Github") {
         steps {
             git branch: 'main',
