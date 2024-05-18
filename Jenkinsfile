@@ -46,7 +46,7 @@ post {
     success { 
         archiveArtifacts artifacts: 'SampleCalculatorApp/bin/Release/**/*', fingerprint: true
         }
-    failure {
+    cleanup {
         cleanWs() /* clean up our workspace */
         }
     }      
