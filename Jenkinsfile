@@ -46,8 +46,8 @@ post {
     success { 
         archiveArtifacts artifacts: '**/*.dll', fingerprint: true
         }
-    always {
-        cleanWs() /* clean up our workspace */
-        }
+    // always {
+        // cleanWs() /* clean up our workspace */
+        // }
     }      
 }
