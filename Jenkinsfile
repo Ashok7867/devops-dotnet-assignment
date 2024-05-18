@@ -42,9 +42,9 @@ stages {
             }
         }
     }
-post {
-    always {
-        cleanWs() /* clean up our workspace */
-            }   
-    }       
+// post {
+    // always {
+        // cleanWs() /* clean up our workspace */
+            // }   
+    // }       
 }
