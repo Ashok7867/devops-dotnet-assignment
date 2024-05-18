@@ -9,11 +9,15 @@ stages {
   }
  }
  stage('Build'){
+  steps {
     sh 'dotnet build SampleCalculatorApp.sln --configuration Release'
   }
+ }
  stage('Restore'){
+  steps {
     sh 'dotnet restore SampleCalculatorApp.sln'
   }
+ }
    stage('Code Analysis') {
             environment {
                 scannerHome = tool 'Sonar'
