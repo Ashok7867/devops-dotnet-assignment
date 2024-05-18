@@ -42,12 +42,12 @@ stages {
             }
         }
     }
-// post { 
-    // success { 
-        // archiveArtifacts artifacts: 'SampleCalculatorApp/bin/Release/**/*', fingerprint: true
-        // }
-    // always {
-        // cleanWs() /* clean up our workspace */
-        // }
-    // }      
+post { 
+    success { 
+        archiveArtifacts artifacts: '**/*.dll', fingerprint: true
+        }
+    always {
+        cleanWs() /* clean up our workspace */
+        }
+    }      
 }
