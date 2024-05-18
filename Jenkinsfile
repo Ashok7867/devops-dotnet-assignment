@@ -10,12 +10,12 @@ stages {
  }
  stage('Build'){
   steps {
-    sh 'dotnet build SampleCalculatorApp.sln --configuration Release'
+    sh 'dotnet build SampleCalculatorApp/SampleCalculatorApp.csproj --configuration Release'
   }
  }
  stage('Restore'){
   steps {
-    sh 'dotnet restore SampleCalculatorApp.sln'
+    sh 'dotnet restore SampleCalculatorApp/SampleCalculatorApp.csproj'
   }
  }
    stage('Code Analysis') {
