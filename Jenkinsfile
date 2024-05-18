@@ -44,10 +44,7 @@ stages {
     }
 post { 
     always { 
-            { archiveArtifacts artifacts: 'SampleCalculatorApp/bin/**/*', fingerprint: true }
+            {archiveArtifacts artifacts: 'SampleCalculatorApp/bin/**/*', fingerprint: true}
         }
-    // always {
-        // cleanWs() /* clean up our workspace */
-        // }
     }      
 }
