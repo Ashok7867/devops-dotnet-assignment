@@ -44,12 +44,10 @@ stages {
     }
 post { 
     success { 
-        dir('**/*') { archiveArtifacts artifacts: '**' }
+        dir('SampleCalculatorApp/bin/Release/net6.0/') { archiveArtifacts artifacts: '**' }
         }
-    }
-// post {
-    // always {
-        // cleanWs() /* clean up our workspace */
-            // }   
-    // }       
+    always {
+        cleanWs() /* clean up our workspace */
+        }
+    }      
 }
