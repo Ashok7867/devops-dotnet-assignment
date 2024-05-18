@@ -44,7 +44,7 @@ stages {
     }
 post { 
     success { 
-        archiveArtifacts artifacts: '*/**', fingerprint: true
+        archiveArtifacts artifacts: '**/*', fingerprint: true
         }
     always {
         cleanWs() /* clean up our workspace */
