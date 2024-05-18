@@ -8,11 +8,12 @@ stages {
     url: 'git@github.com:Ashok7867/devops-dotnet-assignment.git'
   }
  }
- stage('Build') {
-  steps {
-   bat "msbuild.exe ${workspace}\\SampleCalculatorApp.sln /nologo /nr:false  /p:platform=\"x64\" /p:configuration=\"release\" /t:clean;restore;rebuild"
-     }
-    }
+ stage('Build'){
+    sh 'dotnet build SampleCalculatorApp.sln --configuration Release'
+  }
+ stage('Restore'){
+    sh 'dotnet restore SampleCalculatorApp.sln'
+  }
    stage('Code Analysis') {
             environment {
                 scannerHome = tool 'Sonar'
