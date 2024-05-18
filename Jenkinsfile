@@ -1,24 +1,25 @@
 pipeline {
 agent any
 stages {
- stage("Code Checkout from Github") {
-  steps {
-   git branch: 'main',
-    credentialsId: 'GitHub',
-    url: 'git@github.com:Ashok7867/devops-dotnet-assignment.git'
-  }
- }
- stage('Build'){
-  steps {
-    sh 'dotnet build SampleCalculatorApp/SampleCalculatorApp.csproj --configuration Release'
-  }
- }
- stage('Restore'){
-  steps {
-    sh 'dotnet restore SampleCalculatorApp/SampleCalculatorApp.csproj'
-  }
- }
-   stage('Code Analysis') {
+    stage("Code Checkout from Github") {
+        steps {
+            git branch: 'main',
+            credentialsId: 'GitHub',
+            url: 'git@github.com:Ashok7867/devops-dotnet-assignment.git'
+                }
+            }
+    stage('Restore'){
+        steps {
+            sh 'dotnet restore SampleCalculatorApp/SampleCalculatorApp.csproj'
+            }
+        }
+    stage('Build'){
+        steps {
+            sh 'dotnet build SampleCalculatorApp/SampleCalculatorApp.csproj --configuration Release'
+            }
+        }
+ 
+    stage('Code Analysis') {
             environment {
                 scannerHome = tool 'Sonar'
             }
