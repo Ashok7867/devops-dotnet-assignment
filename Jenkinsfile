@@ -3,8 +3,8 @@ agent any
 options { skipDefaultCheckout() }   
 stages {
     stage('CleanWorkspace') {
-            steps {
-                cleanWs()
+        steps {
+            cleanWs()
             }
         }
     stage("Code Checkout from Github") {
